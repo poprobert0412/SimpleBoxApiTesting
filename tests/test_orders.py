@@ -19,3 +19,8 @@ class TestOrders(unittest.TestCase):
         order_id = submit_order_response.json()["orderId"]
         update_an_order_response = update_an_order(order_id)
         assert update_an_order_response.status_code == 204
+
+    def test_submit_an_order(self):
+        submit_order_response = submit_an_order(4, "Pop Robert")
+        assert submit_order_response.status_code == 201
+        assert submit_order_response.json()['created'] == True
