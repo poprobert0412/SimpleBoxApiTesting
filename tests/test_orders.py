@@ -30,3 +30,16 @@ class TestOrders(unittest.TestCase):
         order_id = submit_order_response.json()['orderId']
         delete_an_order_response = delete_an_order(order_id)
         assert delete_an_order_response.status_code == 204
+
+    def test_post_an_order_with_unavailable_book(self):
+        submit_order_response = submit_an_order(2, "test_invalid")
+        assert submit_order_response.status_code == 404
+
+    def test_delete_an_order_with_unavailable_book(self):
+        submit_order_response = submit_an_order(1, "Random Client")
+        order_id = submit_order_response.json()['orderId']
+        delete_order_response = delete_an_order(order_id)
+        delete_order_response = delete_an_order(order_id)
+        assert delete_order_response.status_code == 404
+        assert delete_order_response.json()["error"] == f"No order with id {order_id}."
+
