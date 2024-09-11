@@ -1,5 +1,4 @@
 import pytest
-import requests
 from requests_folders.order_requests import submit_an_order, get_an_order, update_an_order, delete_an_order
 from requests_folders.generate_token_request import generate_token
 
