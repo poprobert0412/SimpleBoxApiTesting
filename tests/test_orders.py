@@ -43,3 +43,4 @@ def test_delete_an_order_with_unavailable_book(token):
     delete_order_response = delete_an_order(order_id, token)
     assert delete_order_response.status_code == 404
     assert delete_order_response.json()["error"] == f"No order with id {order_id}."
+
